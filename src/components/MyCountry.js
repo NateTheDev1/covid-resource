@@ -42,6 +42,12 @@ const useStyles = makeStyles({
       color: "white",
       backgroundColor: "#1976D2",
     },
+    "@media (max-width:776px)": {
+      width: "50%",
+    },
+    "@media (max-width:410px)": {
+      width: "60%",
+    },
   },
   icon: {
     color: "gray",
@@ -102,12 +108,9 @@ const MyCountry = (props) => {
                 input={<Input id="country" />}
                 className={classes.select}
               >
-                <option aria-label="Select" value="Example">
-                  Example
-                </option>
-                <option aria-label="Select" value="United States of America">
-                  United States of America
-                </option>
+                {props.countriesData.map((c) => (
+                  <option value={c.Country}>{c.Country}</option>
+                ))}
               </Select>
             </FormControl>
           </form>
@@ -125,6 +128,7 @@ const mapStateToProps = (state) => {
   return {
     personalCountry: state.personalCountry,
     personalCountryData: state.personalCountryData,
+    countriesData: state.countriesData,
   };
 };
 

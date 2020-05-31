@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     "@media (max-width: 615px)": {
       flexDirection: "column",
       justifyContent: "center",
-
+      textAlign: "center",
       "& h1": {
         marginBottom: "2%",
       },
