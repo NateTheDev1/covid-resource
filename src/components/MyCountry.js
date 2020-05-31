@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   Paper,
   DialogActions,
@@ -15,44 +14,7 @@ import {
 import FlagIcon from "@material-ui/icons/Flag";
 import { connect } from "react-redux";
 import { changeCountry, fetchPersonalCountry } from "../actions/actions";
-
-const useStyles = makeStyles({
-  root: {
-    marginTop: "5%",
-    margin: "0 auto",
-    width: "75%",
-    height: "15vh",
-    padding: "20px 1.25%",
-    textAlign: "center",
-    fontWeight: "500",
-    color: "white",
-    backgroundColor: "#212121",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  btn: {
-    width: "25%",
-    backgroundColor: "white",
-    display: "flex",
-    justifyContent: "space-around",
-    color: "gray",
-    "&:hover": {
-      color: "white",
-      backgroundColor: "#1976D2",
-    },
-    "@media (max-width:776px)": {
-      width: "50%",
-    },
-    "@media (max-width:410px)": {
-      width: "60%",
-    },
-  },
-  icon: {
-    color: "gray",
-  },
-});
+import useStyles from "./MyCountryStyles";
 
 const MyCountry = (props) => {
   const [open, setOpen] = useState(true);
@@ -128,7 +90,7 @@ const mapStateToProps = (state) => {
   return {
     personalCountry: state.personalCountry,
     personalCountryData: state.personalCountryData,
-    countriesData: state.countriesData,
+    countriesData: state.staticCountries,
   };
 };
 

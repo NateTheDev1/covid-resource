@@ -3,8 +3,10 @@ import {
   FETCH_COUNTRY,
   FETCH_PERSONAL_COUNTRY,
 } from "../actions/actions";
+import { data } from "../countriesDataStatic";
 
 let initialState = {
+  staticCountries: data,
   countriesData: [],
   countryFilter: "",
   personalCountry: localStorage.getItem("country")

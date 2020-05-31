@@ -4,6 +4,7 @@ import useStyles from "./AppStyles";
 import MyCountry from "./components/MyCountry";
 import { connect } from "react-redux";
 import { fetchCountry } from "./actions/actions";
+import PersonalCountry from "./components/PersonalCountry";
 
 const App = (props) => {
   const classes = useStyles();
@@ -15,11 +16,7 @@ const App = (props) => {
   return (
     <div className={classes.root}>
       <Header />
-      {props.personalCountry.length === 0 ? (
-        <MyCountry />
-      ) : (
-        <h1>{props.personalCountry}</h1>
-      )}
+      {props.personalCountry.length === 0 ? <MyCountry /> : <PersonalCountry />}
     </div>
   );
 };
