@@ -133,6 +133,7 @@ html {
 }
 
 body {
-  background-color: rgb(246, 248, 250);
+  /* background-color: rgb(246, 248, 250); */
+  background-color: rgba(33, 33, 33, 0.9);
   font-family: "Poppins", sans-serif;
 }

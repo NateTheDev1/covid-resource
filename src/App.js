@@ -1,24 +1,27 @@
 import React from "react";
 import Header from "./components/Header";
-import { makeStyles } from "@material-ui/core/styles";
+import useStyles from "./AppStyles";
+import MyCountry from "./components/MyCountry";
+import { connect } from "react-redux";
 
-const useStyles = makeStyles({
-  root: {
-    height: "100vh",
-    maxWidth: "960px",
-    margin: "0 auto",
-    backgroundColor: "white",
-    boxShadow: "1px 1px 5px 1px rgba(0,0,0,0.45)",
-  },
-});
-
-const App = () => {
+const App = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Header />
+      {props.personalCountry.length === 0 ? (
+        <MyCountry />
+      ) : (
+        <h1>{props.personalCountry}</h1>
+      )}
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    personalCountry: state.personalCountry,
+  };
+};
+
+export default connect(mapStateToProps, {})(App);
