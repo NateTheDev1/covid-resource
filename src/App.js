@@ -23,7 +23,40 @@ const App = (props) => {
           {props.personalCountry.length === 0 ? (
             <MyCountry />
           ) : (
-            <PersonalCountry personalCountryData={props.personalCountryData} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "20px 2%",
+              }}
+            >
+              <PersonalCountry
+                personalCountryData={props.personalCountryData}
+              />
+              <div style={{ width: "65%", margin: 0, border: "1px solid red" }}>
+                <h2
+                  style={{
+                    textAlign: "center",
+
+                    fontWeight: 400,
+                    fontSize: "1.5rem",
+                    letterSpacing: "2",
+                    textTransform: "uppercase",
+                    color: "gray",
+                  }}
+                >
+                  Other Countries
+                </h2>
+                <hr />
+                <div className={classes.countries}>
+                  <ul>
+                    {props.countriesData.map((c) => {
+                      return <li>{c.Country}</li>;
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       )}

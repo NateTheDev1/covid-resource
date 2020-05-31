@@ -9,8 +9,8 @@ const useStyles = makeStyles({
   root: {
     marginTop: "5%",
     margin: "0 auto",
-    width: "50%",
-    height: "15vh",
+    width: "100%",
+    height: "35vh",
     padding: "20px 1.25%",
     textAlign: "center",
     fontWeight: "500",
@@ -46,6 +46,7 @@ const PersonalCountry = (props) => {
       >
         Your Country
       </h2>
+      <hr />
       <Paper elevation={3} className={classes.root}>
         {props.loading === false && props.personalCountryData.length !== 0 ? (
           // <div>
@@ -60,13 +61,43 @@ const PersonalCountry = (props) => {
           // </div>
           <Card className={classes.card} variant="outlined">
             <CardContent>
-              <Typography gutterBottom>
+              <Typography
+                gutterBottom
+                style={{
+                  fontWeight: 700,
+                  fontSize: "1.2rem",
+                  marginBottom: "15%",
+                }}
+              >
                 {props.personalCountryData[0].Country}
               </Typography>
-              <Typography style={{ color: "red" }}>
+              <Typography gutterBottom style={{ color: "yellow" }}>
                 {props.personalCountryData[0].NewConfirmed}
               </Typography>
-              <Typography>Confirmed Cases</Typography>
+              <Typography
+                gutterBottom
+                style={{ fontWeight: 400, fontSize: "1.2rem" }}
+              >
+                Confirmed Cases
+              </Typography>
+              <Typography gutterBottom style={{ color: "red" }}>
+                {props.personalCountryData[0].NewDeaths}
+              </Typography>
+              <Typography
+                gutterBottom
+                style={{ fontWeight: 400, fontSize: "1.2rem" }}
+              >
+                New Deaths
+              </Typography>
+              <Typography gutterBottom style={{ color: "green" }}>
+                {props.personalCountryData[0].NewRecovered}
+              </Typography>
+              <Typography
+                gutterBottom
+                style={{ fontWeight: 400, fontSize: "1.2rem" }}
+              >
+                New Recovered
+              </Typography>
             </CardContent>
           </Card>
         ) : (
