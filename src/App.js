@@ -16,7 +16,17 @@ const App = (props) => {
   return (
     <div className={classes.root}>
       <Header />
-      {props.personalCountry.length === 0 ? <MyCountry /> : <PersonalCountry />}
+      {props.loading === true && props.personalCountryData.length === 0 ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div>
+          {props.personalCountry.length === 0 ? (
+            <MyCountry />
+          ) : (
+            <PersonalCountry personalCountryData={props.personalCountryData} />
+          )}
+        </div>
+      )}
     </div>
   );
 };
@@ -26,6 +36,7 @@ const mapStateToProps = (state) => {
     personalCountry: state.personalCountry,
     countriesData: state.countriesData,
     personalCountryData: state.personalCountryData,
+    loading: state.loading,
   };
 };
 

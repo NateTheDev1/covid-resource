@@ -6,55 +6,64 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    marginTop: "5%",
+    margin: "0 auto",
+    width: "75%",
+    height: "15vh",
+    padding: "20px 1.25%",
+    textAlign: "center",
+    fontWeight: "500",
+    color: "white",
+    backgroundColor: "#212121",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
 });
 
 const PersonalCountry = (props) => {
   const classes = useStyles();
-  let country = localStorage.getItem("country");
-  const [data, setData] = useState({
-    Country: "United States",
-    CountryCode: "US",
-    NewConfirmed: "0",
-  });
-
-  useEffect(() => {
-    axios
-      .get("https://api.covid19api.com/summary")
-      .then((res) => {
-        let personalCountryData = res.data.Countries.filter((c) => {
-          return c.Country === country;
-        });
-
-        let newObj = {
-          Country: personalCountryData.Country,
-          CountryCode: personalCountryData.CountryCode,
-          NewConfirmed: personalCountryData.NewConfirmed,
-        };
-        setData(newObj);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   return (
-    <Paper elevation={3} className={classes.root}>
-      <h3>{data.Country}</h3>
-      <img
-        src={`https://www.countryflags.io/${data.CountryCode}/flat/64.png`}
-      />
-      <div className={data.stats}>
-        <h2>{data.NewConfirmed}</h2>
-        <p>Confirmed</p>
-      </div>
-    </Paper>
+    <div>
+      <h2
+        style={{
+          textAlign: "center",
+          marginTop: "5%",
+          fontWeight: 400,
+          fontSize: "1.5rem",
+          letterSpacing: "2",
+          textTransform: "uppercase",
+        }}
+      >
+        Your Country
+      </h2>
+      <Paper elevation={3} className={classes.root}>
+        {props.loading === false && props.personalCountryData.length !== 0 ? (
+          <div>
+            <h3>{props.personalCountryData[0].Country}</h3>
+            <img
+              src={`https://www.countryflags.io/${props.personalCountryData[0].CountryCode}/flat/64.png`}
+            />
+            <div className={props.personalCountryData[0].stats}>
+              <h2>{props.personalCountryData[0].NewConfirmed}</h2>
+              <p>Confirmed Cases</p>
+            </div>
+          </div>
+        ) : (
+          <h1>Still Loading</h1>
+        )}
+      </Paper>
+    </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     personalCountryData: state.personalCountryData,
+    loading: state.loading,
   };
 };
 

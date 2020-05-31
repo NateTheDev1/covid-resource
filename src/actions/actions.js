@@ -1,5 +1,5 @@
 import axios from "axios";
-
+export const FETCHING = "FETCHING";
 export const CHANGE_COUNTRY = "CHANGE_COUNTRY";
 export const FETCH_COUNTRY = "FETCH_COUNTRY";
 export const FETCH_PERSONAL_COUNTRY = "FETCH_PERSONAL_COUNTRY";
@@ -13,6 +13,7 @@ export const changeCountry = (country) => {
 
 export const fetchCountry = (personalCountry) => (dispatch) => {
   console.log("Here");
+  dispatch({ type: FETCHING, payload: true });
   axios
     .get("https://api.covid19api.com/summary")
     .then((res) => {
@@ -32,6 +33,7 @@ export const fetchCountry = (personalCountry) => (dispatch) => {
 };
 
 export const fetchPersonalCountry = (personalCountry) => (dispatch) => {
+  dispatch({ type: FETCHING, payload: true });
   axios
     .get("https://api.covid19api.com/summary")
     .then((res) => {
