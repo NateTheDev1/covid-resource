@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import FlagIcon from "@material-ui/icons/Flag";
 import { connect } from "react-redux";
-import { changeCountry } from "../actions/actions";
+import { changeCountry, fetchPersonalCountry } from "../actions/actions";
 
 const useStyles = makeStyles({
   root: {
@@ -61,6 +61,7 @@ const MyCountry = (props) => {
     e.preventDefault();
     setOpen(false);
     props.changeCountry(country);
+    props.fetchPersonalCountry(props.personalCountry);
   };
 
   const handleClickOpen = () => {
@@ -104,8 +105,8 @@ const MyCountry = (props) => {
                 <option aria-label="Select" value="Example">
                   Example
                 </option>
-                <option aria-label="Select" value="Example 3">
-                  Example 3
+                <option aria-label="Select" value="United States of America">
+                  United States of America
                 </option>
               </Select>
             </FormControl>
@@ -123,7 +124,11 @@ const MyCountry = (props) => {
 const mapStateToProps = (state) => {
   return {
     personalCountry: state.personalCountry,
+    personalCountryData: state.personalCountryData,
   };
 };
 
-export default connect(mapStateToProps, { changeCountry })(MyCountry);
+export default connect(mapStateToProps, {
+  changeCountry,
+  fetchPersonalCountry,
+})(MyCountry);
