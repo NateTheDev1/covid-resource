@@ -20,6 +20,12 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
+
+    "@media (max-width: 875px)": {
+      margin: "0 auto",
+      width: "90%",
+      marginBottom: "3%",
+    },
   },
   card: {
     height: "100%",

@@ -20,6 +20,28 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
+
+    "@media (max-width: 875px)": {
+      margin: "0 auto",
+      width: "90%",
+    },
+  },
+  otherCountries: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "20px 2%",
+
+    "@media (max-width: 875px)": {
+      flexDirection: "column",
+    },
+  },
+  content: {
+    width: "65%",
+
+    "@media (max-width: 875px)": {
+      width: "100%",
+      margin: "0 auto",
+    },
   },
 });
 

@@ -5,6 +5,7 @@ import MyCountry from "./components/MyCountry";
 import { connect } from "react-redux";
 import { fetchCountry } from "./actions/actions";
 import PersonalCountry from "./components/PersonalCountry";
+import OtherCountries from "./components/OtherCountries";
 
 const App = (props) => {
   const classes = useStyles();
@@ -23,17 +24,11 @@ const App = (props) => {
           {props.personalCountry.length === 0 ? (
             <MyCountry />
           ) : (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "20px 2%",
-              }}
-            >
+            <div className={classes.otherCountries}>
               <PersonalCountry
                 personalCountryData={props.personalCountryData}
               />
-              <div style={{ width: "65%", margin: 0, border: "1px solid red" }}>
+              <div className={classes.content}>
                 <h2
                   style={{
                     textAlign: "center",
@@ -45,13 +40,13 @@ const App = (props) => {
                     color: "gray",
                   }}
                 >
-                  Other Countries
+                  Cases By Country
                 </h2>
                 <hr />
                 <div className={classes.countries}>
                   <ul>
                     {props.countriesData.map((c) => {
-                      return <li>{c.Country}</li>;
+                      return <OtherCountries country={c} />;
                     })}
                   </ul>
                 </div>
